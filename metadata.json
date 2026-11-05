@@ -1,0 +1,8 @@
+{
+  "name": "Remix OmniShop OS - Online Shop Management System",
+  "description": "Comprehensive multimedia retail catalog, client storefront, and administrator management portal with order fulfillment, online payment workflows, and product exchange tracking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
