@@ -5,7 +5,8 @@ Storefront + admin dashboard (React, Vite, Tailwind).
 
 ## Requirements
 
-- [Node.js](https://nodejs.org/) 18+ (LTS recommended)
+- **[Node.js 20 or 22 LTS](https://nodejs.org/)** (recommended). Node 24+ may work but is not tested; use LTS if `npm install` fails on esbuild.
+- npm 10+ (comes with Node)
 
 ## Quick start
 
@@ -17,6 +18,41 @@ npm run dev
 ```
 
 Open **http://localhost:3000/** in your browser.
+
+## Troubleshooting `npm install` (especially on Windows)
+
+This is **not a missing file in GitHub**. `node_modules` is created on your PC when you run `npm install`. Failures are usually local locks or permissions.
+
+| Message | Meaning |
+|--------|---------|
+| `deprecated node-domexception` | Harmless warning from a dependency — **ignore it**. |
+| `EPERM` / `EBUSY` on `esbuild.exe` or `@tailwindcss` | Another program is **using or blocking** files in `node_modules` (very common on Windows). |
+
+**Fix (Windows):**
+
+1. Stop **`npm run dev`**, close extra terminals, and close the project in Cursor/VS Code if needed.
+2. Delete the broken folder (PowerShell, in project root):
+
+   ```powershell
+   Remove-Item -Recurse -Force node_modules -ErrorAction SilentlyContinue
+   Remove-Item -Force package-lock.json -ErrorAction SilentlyContinue
+   ```
+
+3. Use **Node 20 or 22 LTS** (`node -v`). If you see v24, install LTS from [nodejs.org](https://nodejs.org/).
+4. Run install again:
+
+   ```powershell
+   npm install
+   ```
+
+5. If it still fails: temporarily **pause Windows Defender** real-time scan for the project folder, or add an exclusion for the project path; then repeat steps 2–4.
+
+**Fix (Mac/Linux):**
+
+```bash
+rm -rf node_modules
+npm install
+```
 
 ## Admin panel
 
